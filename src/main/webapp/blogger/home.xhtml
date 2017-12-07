@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/template/template.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="title">Espace bloggers</ui:define>
+
+	<ui:define name="content">
+		<h1>Bonjour #{loginBean.blogueur.login}</h1>
+		<br></br>
+		<h:form>
+			<h:dataTable value="#{loginBean.articles}" var="article" border="1">
+
+				<h:column>
+					<f:facet name="header">id</f:facet>
+    #{article.idArticle} 
+      </h:column>
+				<h:column>
+					<f:facet name="header">titre</f:facet>
+					<h:commandLink action="#{loginBean.doRedirect()}">#{article.titre}
+					
+					<f:setPropertyActionListener target="#{loginBean.articleDetail}"
+							value="#{article}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
